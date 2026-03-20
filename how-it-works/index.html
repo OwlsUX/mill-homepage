@@ -294,19 +294,22 @@
 
 
 <!-- ============================================ -->
-<!-- 01 / 08 — HERO                               -->
+<!-- 01 / 08 — HERO: VIDEO MODULE                  -->
 <!-- ============================================ -->
-<section class="relative min-h-screen flex items-center overflow-hidden" style="padding-top: 112px;">
-    <div class="absolute inset-0 z-0">
-        <img alt="Mill food recycler in a modern kitchen" class="w-full h-full object-cover" src="https://a-us.storyblok.com/f/1019164/3024x1703/0544207d09/filler-hp-desktop.webp/m/" loading="eager"/>
-        <div class="absolute inset-0 bg-black/35"></div>
-    </div>
-    <div class="relative z-10 max-w-[1405px] mx-auto px-5 lg:px-10 w-full">
-        <div class="max-w-3xl">
-            <span class="section-label block mb-6" style="color: rgba(255,255,255,0.5);">How It Works</span>
-            <h1 class="font-jane text-[36px] md:text-[48px] lg:text-[60px] leading-[1.06] tracking-[-0.5px] text-white font-normal mb-6">$1,800 of groceries go in your trash every year. <span class="text-[#EBFF80]">Mill puts them back to work.</span></h1>
-            <p class="font-jane text-[18px] lg:text-[20px] leading-[1.6] text-white max-w-xl mb-10">The average American household throws away over 30% of the food they buy. Mill transforms that waste into something useful — automatically, overnight.</p>
-            <a href="#" class="btn-primary-lg px-10 shadow-lg">Shop Mill</a>
+<section class="bg-white section-padding" style="padding-top: 140px;">
+    <div class="max-w-[1405px] mx-auto px-5 lg:px-10">
+        <div class="text-center max-w-4xl mx-auto mb-14">
+            <span class="section-label block mb-4">How It Works</span>
+            <h1 class="font-jane text-[36px] md:text-[48px] lg:text-[60px] leading-[1.06] tracking-[-0.5px] text-[#240D02] font-normal">$1,800 of groceries go in your trash every year. <span class="text-[#0B8150]">Mill puts them back to work.</span></h1>
+        </div>
+        <div class="relative card-radius overflow-hidden group cursor-pointer" id="hiw-hero-video">
+            <img alt="Mill food recycler in use" class="w-full h-auto" src="https://a-us.storyblok.com/f/1019164/3024x1703/0544207d09/filler-hp-desktop.webp/m/" loading="eager"/>
+            <div class="absolute inset-0 bg-black/30 flex flex-col items-center justify-center gap-5 transition-opacity duration-300">
+                <div class="w-24 h-24 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <span class="material-symbols-outlined fill-1 text-[#240D02] text-[48px]">play_arrow</span>
+                </div>
+                <span class="font-jane text-white text-lg font-semibold tracking-wide">Watch how</span>
+            </div>
         </div>
     </div>
 </section>
@@ -854,6 +857,23 @@
     document.querySelectorAll('video[data-mux-id]').forEach(video => {
         initMuxVideo(video, true);
     });
+
+    // Hero video play on click
+    const heroVideo = document.getElementById('hiw-hero-video');
+    if (heroVideo) {
+        heroVideo.addEventListener('click', () => {
+            const muxId = 'nh005HLL800Tz02lTQHY6BkbFWqy1Jof3YVtY74jL2iWUM';
+            const video = document.createElement('video');
+            video.autoplay = true;
+            video.controls = true;
+            video.playsInline = true;
+            video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;';
+            heroVideo.innerHTML = '';
+            heroVideo.appendChild(video);
+            heroVideo.style.cursor = 'default';
+            initMuxVideo(video, true);
+        });
+    }
 
     // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
